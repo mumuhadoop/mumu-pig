@@ -1,4 +1,4 @@
-nginxlog = load 'hdfs://192.168.11.25:9000/mapreduce/nginxlog/access/input/20171015' using PigStorage(' ');
+nginxlog = load '/mapreduce/nginxlog/access/input' using PigStorage(' ');
 
 group_nginxlog = group nginxlog by $0;
 
