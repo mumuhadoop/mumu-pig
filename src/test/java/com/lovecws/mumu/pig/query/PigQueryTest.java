@@ -2,7 +2,6 @@ package com.lovecws.mumu.pig.query;
 
 import com.lovecws.mumu.pig.MumuPigConfiguration;
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.apache.pig.builtin.PigStorage;
 import org.junit.Test;
 
 import java.util.Date;
@@ -42,7 +41,12 @@ public class PigQueryTest {
     @Test
     public void nginxLogScript() {
         String filename = "/pig/output/nginxlog" + DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
-        pigQuery.script(PigQueryTest.class.getResourceAsStream("/pig/nginxlog.pig"), "limit_nginxlog", filename);
+        pigQuery.script(PigQueryTest.class.getResourceAsStream("/pig/nginxlog_ipcounter.pig"), "limit_nginxlog", filename);
         new MumuPigConfiguration().printMessage(filename);
+    }
+
+    @Test
+    public void jar(){
+        pigQuery.jar();
     }
 }

@@ -57,4 +57,17 @@ public class PigQuery {
             pigServer.shutdown();
         }
     }
+
+    public void jar() {
+        PigServer pigServer = null;
+        try {
+            pigServer = new MumuPigConfiguration().mapreduce();
+            pigServer.registerJar("mumu-pig.jar");
+            pigServer.registerQuery("nginxlog = load '/mapreduce/nginxlog/access/input' using com.lovecws.mumu.pig.loader.NginxLogLoader();");
+            pigServer.dumpSchema("nginxlog");
+        } catch (IOException e) {
+            e.printStackTrace();
+            pigServer.shutdown();
+        }
+    }
 }
