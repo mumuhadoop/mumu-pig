@@ -4,7 +4,7 @@ nginxlog = load 'hdfs://192.168.11.25:9000/mapreduce/nginxlog/access/input' usin
 
 describe nginxlog;
 
-filter_nginxlog = foreach nginxlog generate com.lovecws.mumu.pig.eval.DateFormatEval(accessTime) as accessTime ,remoteAddr;
+filter_nginxlog = foreach nginxlog generate com.lovecws.mumu.pig.eval.HourDateFormatEval(accessTime) as accessTime ,remoteAddr;
 
 distinct_nginxlog = distinct filter_nginxlog;
 

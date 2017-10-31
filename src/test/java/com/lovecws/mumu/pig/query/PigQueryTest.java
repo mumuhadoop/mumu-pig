@@ -46,6 +46,13 @@ public class PigQueryTest {
     }
 
     @Test
+    public void hourNginxLogScript() {
+        String filename = "hdfs://192.168.11.25:9000/pig/output/nginxlog" + DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
+        pigQuery.script(PigQueryTest.class.getResourceAsStream("/pig/nginxlog_timecounter.pig"), "counter_nginxlog", filename);
+        new MumuPigConfiguration().printMessage(filename);
+    }
+
+    @Test
     public void jar(){
         pigQuery.jar();
     }
