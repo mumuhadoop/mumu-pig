@@ -30,7 +30,7 @@ public class NginxAccessLogParser {
 
         String accessTime = getAccessTime(readLine);
         readLine = readLine.replace(accessTime, "");
-        SimpleDateFormat sf = new SimpleDateFormat("[dd/MMM/yyyy:hh:mm:ss z]", Locale.ENGLISH);
+        SimpleDateFormat sf = new SimpleDateFormat("[dd/MMM/yyyy:HH:mm:ss z]", Locale.ENGLISH);
         try {
             httpMap.put("accessTime", sf.parse(accessTime));
         } catch (ParseException e) {
